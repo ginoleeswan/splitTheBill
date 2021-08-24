@@ -13,7 +13,7 @@ const totalWidth = 320;
 // const width = totalWidth / count;
 const height = 80;
 
-export default ({ count, multiplier, init, percent }) => {
+export default ({ count, multiplier, init, percent, name }) => {
   const x = new Value(0);
   return (
     <View style={styles.container}>
@@ -33,7 +33,10 @@ export default ({ count, multiplier, init, percent }) => {
         }}
       />
       <Labels size={height} {...{ x, count, multiplier, init, percent }} />
-      <Cursor size={height} {...{ x, count, multiplier, init, percent }} />
+      <Cursor
+        size={height}
+        {...{ x, count, multiplier, init, percent, name }}
+      />
     </View>
   );
 };

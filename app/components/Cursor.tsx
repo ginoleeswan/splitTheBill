@@ -9,22 +9,27 @@ import Animated, {
   lessThan,
   modulo,
   set,
+  call,
   useCode,
+  useValue,
 } from "react-native-reanimated";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
-import { useEffect } from "react";
+import { useEffect, useContext, useState } from "react";
+
+import { ScrollContext } from "../config/config";
+import { SliderContext } from "../context/SliderContext";
 
 const { Value, round, divide, concat, add, multiply } = Animated;
 
-export default ({ size, count, x, multiplier, init, percent }) => {
+export default ({ size, count, x, multiplier, init, percent, name }) => {
   const snapValue = 240 / (count - 1);
   const snapPoints = new Array(count).fill(0).map((e, i) => i * snapValue);
   const index = round(divide(x, snapValue));
-  const translationX = new Value(0);
-  const velocityX = new Value(0);
-  const state = new Value(State.UNDETERMINED);
+  const translationX = useValue(0);
+  const velocityX = useValue(0);
+  const state = useValue(State.UNDETERMINED);
   const gestureHandler = onGestureEvent({ state, translationX, velocityX });
-  const offset = new Value(0);
+  const offset = useValue(0);
   const value = add(offset, translationX);
   const translateX = clamp(
     cond(
@@ -44,12 +49,61 @@ export default ({ size, count, x, multiplier, init, percent }) => {
   );
   useCode(() => set(x, translateX), [x, translateX]);
 
-  useEffect(() => {
-    console.log(snapPoints);
-  }, []);
+  const [slider, setSliders] = useContext(SliderContext);
+
+  let currentNumber = add(multiply(index, multiplier), init);
+
+  const handleStateChange = () => {
+    if (name === "tip") {
+      setSliders({ tip: currentNumber });
+    } else if (name === "people") {
+      setSliders({ people: currentNumber });
+    }
+
+    // console.log(slider.tip);
+
+    // setScroll(true);
+
+    // else if (
+    //   nativeEvent.state === State.ACTIVE ||
+    //   nativeEvent.state === State.BEGAN
+    // ) {
+    //   // setScroll(false);
+    // }
+  };
+
+  const [scroll, setScroll] = useContext(ScrollContext);
+
+  // const [tip, setTip] = useValue(0);
+  // const [people, setPeople] = useState(0);
+
+  // useCode(() => {
+  //   return call([currentNumber], (currentNumber) => {
+  //     // if (name === "tip") {
+  //     //   setSliders({ tip: currentNumber });
+  //     // } else if (name === "people") {
+  //     //   setSliders({ people: currentNumber });
+  //     // }
+
+  //     console.log(currentNumber);
+  //     // console.log(slider.tip);
+  //   });
+  // }, [currentNumber]);
+
+  // useEffect(() => {
+  //   console.log(snapPoints);
+  // }, []);
+
+  // useEffect(() => {
+  //   console.log(slider.tip);
+  // }, [slider.tip]);
 
   return (
-    <PanGestureHandler {...gestureHandler}>
+    <PanGestureHandler
+      {...gestureHandler}
+      enabled={true}
+      onHandlerStateChange={handleStateChange}
+    >
       <Animated.View
         style={{
           ...StyleSheet.absoluteFillObject,
