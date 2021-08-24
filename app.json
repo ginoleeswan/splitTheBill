@@ -28,6 +28,7 @@
     "web": {
       "favicon": "./app/assets/favicon.png"
     },
-    "description": "A bill splitter app\nMade by Gino Swanepoel"
+    "description": "A bill splitter app\nMade by Gino Swanepoel",
+    "githubUrl": "https://github.com/ginoleeswan/splitTheBill"
   }
 }
