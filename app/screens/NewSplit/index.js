@@ -35,16 +35,10 @@ import { ScrollContext } from "../../config/config";
 
 const NewSplit = ({ navigation }) => {
   const [bills, setBills] = useContext(BillContext);
-  const [slider, setSlider] = useContext(SliderContext);
-
-  const [tip, setTip] = useState(0);
-  const [people, setPeople] = useState(1);
 
   const [totalAmount, setTotalAmount] = useState("");
-  //   const [tip, setTip] = useState(0);
-  //   const [people, setPeople] = useState(1);
-
-  const [scroll, setScroll] = useContext(ScrollContext);
+  const [tip, setTip] = useState(0);
+  const [people, setPeople] = useState(1);
 
   var today = new Date();
   let currentDate =
@@ -69,6 +63,8 @@ const NewSplit = ({ navigation }) => {
       ]);
     }
     setTotalAmount("");
+    setPeople(1);
+    setTip(0);
   };
 
   const leftTip = (tip / 10) * (360 / 5) + 30;
@@ -129,7 +125,7 @@ const NewSplit = ({ navigation }) => {
             </View>
             <View>
               <Text
-                style={{ ...styles.h4Light, marginBottom: 20, marginLeft: 10 }}
+                style={{ ...styles.h4Light, marginBottom: 15, marginLeft: 10 }}
               >
                 Tip
               </Text>
@@ -437,7 +433,7 @@ const styles = StyleSheet.create({
     width: 320,
     height: 80,
     // padding: 10,
-    marginBottom: 20,
+    marginBottom: 25,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
