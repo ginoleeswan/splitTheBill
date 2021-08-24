@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { Colors } from "../../styles/colors";
 
 const Bill = ({ id, catagory, totalAmount, people, tip, date }) => {
-  const theTip = `${tip * 100}%`;
+  const theTip = `${tip}%`;
   return (
     <View style={styles.billContainer} key={id}>
       <View style={styles.billInfo}>
