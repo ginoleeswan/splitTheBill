@@ -10,27 +10,18 @@ import Profile from "./app/screens/Profile";
 import NavBar from "./app/components/NavBar";
 import { ScrollProvider } from "./app/config/config";
 import { SliderProvider } from "./app/context/SliderContext";
+import { HomeNavigation } from "./app/components/Navigation/HomeNavigation";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <ScrollProvider>
-      <SliderProvider>
-        <BillProvider>
-          <NavigationContainer>
-            {/* <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Profile" component={Profile} />
-      </Stack.Navigator> */}
-            <NavBar />
-          </NavigationContainer>
-        </BillProvider>
-      </SliderProvider>
+      <BillProvider>
+        <NavigationContainer>
+          <HomeNavigation />
+        </NavigationContainer>
+      </BillProvider>
     </ScrollProvider>
   );
 }

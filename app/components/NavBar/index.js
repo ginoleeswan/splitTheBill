@@ -6,8 +6,20 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import NewSplit from "../../screens/NewSplit";
 import History from "../../screens/History";
+import { HomeNavigation } from "../Navigation/HomeNavigation";
+import { NewSplitNavigation } from "../Navigation/NewSplitNavigation";
 
 const Tab = createBottomTabNavigator();
+
+// const getTabBarVisible = (route) => {
+//   const params = route.params;
+//   if (params) {
+//     if (params.tabBarVisible === false) {
+//       return false;
+//     }
+//   }
+//   return true;
+// };
 
 const NavBar = () => {
   return (
@@ -94,9 +106,15 @@ const NavBar = () => {
       })}
     >
       <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen
+        name="New Split"
+        component={NewSplitNavigation}
+        // options={({ route }) => ({
+        //   tabBarVisible: getTabBarVisible(route),
+        // })}
+      />
       <Tab.Screen name="History" component={History} />
-      <Tab.Screen name="New Split" component={NewSplit} />
-      <Tab.Screen name="Profile" component={Profile} />
+      {/* <Tab.Screen name="Profile" component={Profile} /> */}
     </Tab.Navigator>
   );
 };

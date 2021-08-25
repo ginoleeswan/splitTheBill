@@ -6,7 +6,7 @@ const BackButton = ({ navigation }) => {
   return (
     <TouchableHighlight
       style={styles.backBtn}
-      onPress={() => navigation.navigate("Home")}
+      onPress={() => navigation.goBack()}
     >
       <Icon name="chevron-back" style={styles.backIcon}></Icon>
     </TouchableHighlight>

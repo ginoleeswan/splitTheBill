@@ -50,9 +50,8 @@ const NewSplit = ({ navigation }) => {
 
   const addBill = (e) => {
     e.preventDefault();
-    if (totalAmount != null) {
+    if (totalAmount != "") {
       setBills((prevBills) => [
-        ...prevBills,
         {
           totalAmount: totalAmount,
           id: uuid.v4(),
@@ -60,7 +59,9 @@ const NewSplit = ({ navigation }) => {
           tip: tip,
           people: people,
         },
+        ...prevBills,
       ]);
+      navigation.navigate("History");
     }
     setTotalAmount("");
     setPeople(1);
@@ -94,7 +95,7 @@ const NewSplit = ({ navigation }) => {
   } else {
     return (
       <View style={styles.appContainer} keyboardShouldPersistTaps="handled">
-        <Header title={"New Split"} />
+        <Header title={"New Split"} backButton={true} />
         <ScrollView
           contentContainerStyle={styles.appContainerScroll}
           keyboardShouldPersistTaps="handled"

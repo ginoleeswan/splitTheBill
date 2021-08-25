@@ -148,7 +148,10 @@ const Home = ({ navigation }) => {
             </TouchableOpacity>
           </View>
           <View style={styles.historyContainer}>
-            <TouchableOpacity style={styles.infoButton}>
+            <TouchableOpacity
+              style={styles.infoButton}
+              onPress={() => navigation.navigate("History")}
+            >
               <Icon name="exclamationcircleo" style={styles.icon}></Icon>
             </TouchableOpacity>
             <View>
