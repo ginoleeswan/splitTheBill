@@ -2,11 +2,11 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import BackButton from "./BackButton";
 
-const Header = ({ title, backButton }) => {
+const Header = ({ title, backButton, navigation }) => {
   if (backButton == true) {
     return (
       <View style={styles.header}>
-        <BackButton />
+        <BackButton navigation={navigation} />
         <Text style={styles.appTitle}>{title}</Text>
       </View>
     );

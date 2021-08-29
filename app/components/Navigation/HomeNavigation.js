@@ -18,7 +18,7 @@ export const HomeNavigation = () => {
     >
       <Stack.Screen name="Home" component={NavBar} />
       <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="New Split" component={NewSplitNavigation} />
+      {/* <Stack.Screen name="New Split" component={NewSplitNavigation} /> */}
       {/* <Stack.Screen name="History" component={History} /> */}
     </Stack.Navigator>
   );

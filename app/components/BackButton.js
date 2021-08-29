@@ -2,12 +2,9 @@ import React from "react";
 import { StyleSheet, TouchableHighlight } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
-const BackButton = ({ navigation }) => {
+const BackButton = ({ navigation: { goBack } }) => {
   return (
-    <TouchableHighlight
-      style={styles.backBtn}
-      onPress={() => navigation.goBack()}
-    >
+    <TouchableHighlight style={styles.backBtn} onPress={() => goBack()}>
       <Icon name="chevron-back" style={styles.backIcon}></Icon>
     </TouchableHighlight>
   );

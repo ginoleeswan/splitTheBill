@@ -17,240 +17,227 @@ import Icon from "react-native-vector-icons/AntDesign";
 import { assets } from "../../../react-native.config";
 
 const Home = ({ navigation }) => {
-  let [fontsLoaded] = useFonts({
-    "VisbyRoundCF-Regular": require("../../assets/fonts/VisbyRoundCF-Regular.ttf"),
-    "VisbyRoundCF-Bold": require("../../assets/fonts/VisbyRoundCF-Bold.ttf"),
-    "VisbyRoundCF-DemiBold": require("../../assets/fonts/VisbyRoundCF-DemiBold.ttf"),
-    "VisbyRoundCF-Medium": require("../../assets/fonts/VisbyRoundCF-Medium.ttf"),
-    "VisbyRoundCF-Heavy": require("../../assets/fonts/VisbyRoundCF-Heavy.ttf"),
-    "VisbyRoundCF-ExtraBold": require("../../assets/fonts/VisbyRoundCF-ExtraBold.ttf"),
-  });
+  return (
+    <View style={styles.background}>
+      <View style={styles.appContainer}>
+        <View style={styles.header}>
+          <Text style={styles.appTitle}>Bill Splitter</Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Profile")}
+            style={{
+              shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
-    return (
-      <View style={styles.background}>
-        <View style={styles.appContainer}>
-          <View style={styles.header}>
-            <Text style={styles.appTitle}>Bill Splitter</Text>
-            <TouchableOpacity
-              onPress={() => navigation.navigate("Profile")}
+              elevation: 5,
+            }}
+          >
+            <Image
+              source={require("../../assets/images/avatars/ToyFaces_Tansparent_BG_28.png")}
+              resizeMode="contain"
               style={{
-                shadowColor: "#000",
-                shadowOffset: {
-                  width: 0,
-                  height: 2,
-                },
-                shadowOpacity: 0.25,
-                shadowRadius: 3.84,
-
-                elevation: 5,
+                width: 60,
+                height: 60,
+                position: "absolute",
+                zIndex: 1,
+                bottom: 30,
+                left: 10,
               }}
-            >
-              <Image
-                source={require("../../assets/images/avatars/ToyFaces_Tansparent_BG_28.png")}
-                resizeMode="contain"
-                style={{
-                  width: 60,
-                  height: 60,
-                  position: "absolute",
-                  zIndex: 1,
-                  bottom: 30,
-                  left: 10,
-                }}
-              />
-              <View style={styles.avatarContainer}>
-                <View
-                  style={{
-                    backgroundColor: "#363355",
-                    width: "100%",
-                    height: 50,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    // borderTopRightRadius: 30,
-                    // borderTopLeftRadius: 30,
-                  }}
-                ></View>
-                <View
-                  style={{
-                    backgroundColor: "#47436a",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    height: 30,
-                    width: "100%",
-                  }}
-                >
-                  <Text
-                    style={{
-                      color: "#fff",
-                      fontFamily: "VisbyRoundCF-Bold",
-                      fontSize: 10,
-                    }}
-                  >
-                    Gino
-                  </Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.mainContainer}>
-            <View style={styles.mainContainerHeader}>
+            />
+            <View style={styles.avatarContainer}>
               <View
                 style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
+                  backgroundColor: "#363355",
+                  width: "100%",
+                  height: 50,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  // borderTopRightRadius: 30,
+                  // borderTopLeftRadius: 30,
+                }}
+              ></View>
+              <View
+                style={{
+                  backgroundColor: "#47436a",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: 30,
+                  width: "100%",
                 }}
               >
-                <Text style={styles.h4}>Total Bill</Text>
-                <Text style={styles.h4}>Split With</Text>
-              </View>
-              <Text style={styles.h2}>R750.56</Text>
-            </View>
-            <View style={styles.mainSplitWith}>
-              <ScrollView contentContainerStyle={{ padding: 10 }}>
-                <Avatar
-                  rounded
-                  size="small"
-                  source={require("../../assets/images/avatars/ToyFaces_Tansparent_BG_37.png")}
-                  onPress={() => console.log("Works!")}
-                  activeOpacity={0.7}
-                  containerStyle={styles.avatarIconSmall}
-                />
-                <Avatar
-                  rounded
-                  size="small"
-                  source={require("../../assets/images/avatars/ToyFaces_Tansparent_BG_47.png")}
-                  onPress={() => console.log("Works!")}
-                  activeOpacity={0.7}
-                  containerStyle={styles.avatarIconSmall}
-                />
-                <Avatar
-                  rounded
-                  size="small"
-                  source={require("../../assets/images/avatars/ToyFaces_Tansparent_BG_32.png")}
-                  onPress={() => console.log("Works!")}
-                  activeOpacity={0.7}
-                  containerStyle={styles.avatarIconSmall}
-                />
-                <Avatar
-                  rounded
-                  size="small"
-                  source={require("../../assets/images/avatars/ToyFaces_Tansparent_BG_8.png")}
-                  onPress={() => console.log("Works!")}
-                  activeOpacity={0.7}
-                  containerStyle={styles.avatarIconSmall}
-                />
-              </ScrollView>
-            </View>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>Split Now</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.historyContainer}>
-            <TouchableOpacity
-              style={styles.infoButton}
-              onPress={() => navigation.navigate("History")}
-            >
-              <Icon name="exclamationcircleo" style={styles.icon}></Icon>
-            </TouchableOpacity>
-            <View>
-              <Text style={styles.h4Light}>Your Previous Split</Text>
-              <Text style={styles.h4Grey}>R482.72</Text>
-            </View>
-          </View>
-          <View style={styles.friendsContainer}>
-            <View style={styles.friendsHeader}>
-              <Text style={styles.h4Light}>Nearby Friends</Text>
-              <TouchableOpacity>
-                <Text style={styles.h4Grey}>See All</Text>
-              </TouchableOpacity>
-            </View>
-            <ScrollView
-              horizontal={true}
-              centerContent={true}
-              contentContainerStyle={styles.friendsContent}
-            >
-              <Avatar
-                rounded
-                size="large"
-                source={require("../../assets/images/avatars/ToyFaces_Tansparent_BG_32.png")}
-                onPress={() => console.log("Works!")}
-                activeOpacity={0.5}
-                containerStyle={styles.avatarIcon}
-              >
-                <Badge
-                  status="success"
-                  badgeStyle={{
-                    width: 15,
-                    height: 15,
-                    borderRadius: "50%",
+                <Text
+                  style={{
+                    color: "#fff",
+                    fontFamily: "VisbyRoundCF-Bold",
+                    fontSize: 10,
                   }}
-                  containerStyle={{ position: "absolute", top: 4, right: 0 }}
-                />
-              </Avatar>
+                >
+                  Gino
+                </Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.mainContainer}>
+          <View style={styles.mainContainerHeader}>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <Text style={styles.h4}>Total Bill</Text>
+              <Text style={styles.h4}>Split With</Text>
+            </View>
+            <Text style={styles.h2}>R750.56</Text>
+          </View>
+          <View style={styles.mainSplitWith}>
+            <ScrollView contentContainerStyle={{ padding: 10 }}>
               <Avatar
                 rounded
-                size="large"
-                source={require("../../assets/images/avatars/ToyFaces_Tansparent_BG_28.png")}
-                onPress={() => console.log("Works!")}
-                activeOpacity={0.5}
-                containerStyle={styles.avatarIcon}
-              >
-                <Badge
-                  status="success"
-                  badgeStyle={{ width: 15, height: 15, borderRadius: "50%" }}
-                  containerStyle={{ position: "absolute", top: 4, right: 0 }}
-                />
-              </Avatar>
-              <Avatar
-                rounded
-                size="large"
-                source={require("../../assets/images/avatars/ToyFaces_Tansparent_BG_8.png")}
-                onPress={() => console.log("Works!")}
-                activeOpacity={0.5}
-                containerStyle={styles.avatarIcon}
-              >
-                <Badge
-                  status="success"
-                  badgeStyle={{ width: 15, height: 15, borderRadius: "50%" }}
-                  containerStyle={{ position: "absolute", top: 4, right: 0 }}
-                />
-              </Avatar>
-              <Avatar
-                rounded
-                size="large"
+                size="small"
                 source={require("../../assets/images/avatars/ToyFaces_Tansparent_BG_37.png")}
                 onPress={() => console.log("Works!")}
-                activeOpacity={0.5}
-                containerStyle={styles.avatarIcon}
-              >
-                <Badge
-                  status="success"
-                  badgeStyle={{ width: 15, height: 15, borderRadius: "50%" }}
-                  containerStyle={{ position: "absolute", top: 4, right: 0 }}
-                />
-              </Avatar>
+                activeOpacity={0.7}
+                containerStyle={styles.avatarIconSmall}
+              />
               <Avatar
                 rounded
-                size="large"
+                size="small"
                 source={require("../../assets/images/avatars/ToyFaces_Tansparent_BG_47.png")}
                 onPress={() => console.log("Works!")}
-                activeOpacity={0.5}
-                containerStyle={styles.avatarIcon}
-              >
-                <Badge
-                  status="success"
-                  badgeStyle={{ width: 15, height: 15, borderRadius: "50%" }}
-                  containerStyle={{ position: "absolute", top: 4, right: 0 }}
-                />
-              </Avatar>
+                activeOpacity={0.7}
+                containerStyle={styles.avatarIconSmall}
+              />
+              <Avatar
+                rounded
+                size="small"
+                source={require("../../assets/images/avatars/ToyFaces_Tansparent_BG_32.png")}
+                onPress={() => console.log("Works!")}
+                activeOpacity={0.7}
+                containerStyle={styles.avatarIconSmall}
+              />
+              <Avatar
+                rounded
+                size="small"
+                source={require("../../assets/images/avatars/ToyFaces_Tansparent_BG_8.png")}
+                onPress={() => console.log("Works!")}
+                activeOpacity={0.7}
+                containerStyle={styles.avatarIconSmall}
+              />
             </ScrollView>
           </View>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Split Now</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.historyContainer}>
+          <TouchableOpacity
+            style={styles.infoButton}
+            onPress={() => navigation.navigate("History")}
+          >
+            <Icon name="exclamationcircleo" style={styles.icon}></Icon>
+          </TouchableOpacity>
+          <View>
+            <Text style={styles.h4Light}>Your Previous Split</Text>
+            <Text style={styles.h4Grey}>R482.72</Text>
+          </View>
+        </View>
+        <View style={styles.friendsContainer}>
+          <View style={styles.friendsHeader}>
+            <Text style={styles.h4Light}>Nearby Friends</Text>
+            <TouchableOpacity>
+              <Text style={styles.h4Grey}>See All</Text>
+            </TouchableOpacity>
+          </View>
+          <ScrollView
+            horizontal={true}
+            centerContent={true}
+            contentContainerStyle={styles.friendsContent}
+          >
+            <Avatar
+              rounded
+              size="large"
+              source={require("../../assets/images/avatars/ToyFaces_Tansparent_BG_32.png")}
+              onPress={() => console.log("Works!")}
+              activeOpacity={0.5}
+              containerStyle={styles.avatarIcon}
+            >
+              <Badge
+                status="success"
+                badgeStyle={{
+                  width: 15,
+                  height: 15,
+                  borderRadius: "50%",
+                }}
+                containerStyle={{ position: "absolute", top: 4, right: 0 }}
+              />
+            </Avatar>
+            <Avatar
+              rounded
+              size="large"
+              source={require("../../assets/images/avatars/ToyFaces_Tansparent_BG_28.png")}
+              onPress={() => console.log("Works!")}
+              activeOpacity={0.5}
+              containerStyle={styles.avatarIcon}
+            >
+              <Badge
+                status="success"
+                badgeStyle={{ width: 15, height: 15, borderRadius: "50%" }}
+                containerStyle={{ position: "absolute", top: 4, right: 0 }}
+              />
+            </Avatar>
+            <Avatar
+              rounded
+              size="large"
+              source={require("../../assets/images/avatars/ToyFaces_Tansparent_BG_8.png")}
+              onPress={() => console.log("Works!")}
+              activeOpacity={0.5}
+              containerStyle={styles.avatarIcon}
+            >
+              <Badge
+                status="success"
+                badgeStyle={{ width: 15, height: 15, borderRadius: "50%" }}
+                containerStyle={{ position: "absolute", top: 4, right: 0 }}
+              />
+            </Avatar>
+            <Avatar
+              rounded
+              size="large"
+              source={require("../../assets/images/avatars/ToyFaces_Tansparent_BG_37.png")}
+              onPress={() => console.log("Works!")}
+              activeOpacity={0.5}
+              containerStyle={styles.avatarIcon}
+            >
+              <Badge
+                status="success"
+                badgeStyle={{ width: 15, height: 15, borderRadius: "50%" }}
+                containerStyle={{ position: "absolute", top: 4, right: 0 }}
+              />
+            </Avatar>
+            <Avatar
+              rounded
+              size="large"
+              source={require("../../assets/images/avatars/ToyFaces_Tansparent_BG_47.png")}
+              onPress={() => console.log("Works!")}
+              activeOpacity={0.5}
+              containerStyle={styles.avatarIcon}
+            >
+              <Badge
+                status="success"
+                badgeStyle={{ width: 15, height: 15, borderRadius: "50%" }}
+                containerStyle={{ position: "absolute", top: 4, right: 0 }}
+              />
+            </Avatar>
+          </ScrollView>
         </View>
       </View>
-    );
-  }
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({

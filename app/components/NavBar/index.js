@@ -6,7 +6,6 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import NewSplit from "../../screens/NewSplit";
 import History from "../../screens/History";
-import { HomeNavigation } from "../Navigation/HomeNavigation";
 import { NewSplitNavigation } from "../Navigation/NewSplitNavigation";
 
 const Tab = createBottomTabNavigator();
@@ -29,7 +28,7 @@ const NavBar = () => {
         tabBarIcon: ({ focused, color, size, style }) => {
           let iconName;
 
-          if (route.name === "Home") {
+          if (route.name === "HomeTab") {
             iconName = focused ? "home" : "home-outline";
           } else if (route.name === "Profile") {
             iconName = focused ? "person" : "person-outline";
@@ -41,7 +40,7 @@ const NavBar = () => {
 
           // You can return any component that you like here!
           if (
-            route.name === "Home" ||
+            route.name === "HomeTab" ||
             route.name === "Profile" ||
             route.name === "History"
           ) {
@@ -105,7 +104,7 @@ const NavBar = () => {
         },
       })}
     >
-      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="HomeTab" component={Home} />
       <Tab.Screen
         name="New Split"
         component={NewSplitNavigation}

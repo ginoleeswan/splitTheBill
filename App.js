@@ -1,27 +1,36 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
 import { BillProvider } from "./app/context/BillContext";
 
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import AppLoading from "expo-app-loading";
 
-import Home from "./app/screens/Home";
-import Profile from "./app/screens/Profile";
-import NavBar from "./app/components/NavBar";
+import { NavigationContainer } from "@react-navigation/native";
+
+import { useFonts } from "@use-expo/font";
+
 import { ScrollProvider } from "./app/config/config";
-import { SliderProvider } from "./app/context/SliderContext";
 import { HomeNavigation } from "./app/components/Navigation/HomeNavigation";
 
-const Stack = createNativeStackNavigator();
-
 export default function App() {
-  return (
-    <ScrollProvider>
-      <BillProvider>
-        <NavigationContainer>
-          <HomeNavigation />
-        </NavigationContainer>
-      </BillProvider>
-    </ScrollProvider>
-  );
+  let [fontsLoaded] = useFonts({
+    "VisbyRoundCF-Regular": require("./app/assets/fonts/VisbyRoundCF-Regular.ttf"),
+    "VisbyRoundCF-Bold": require("./app/assets/fonts/VisbyRoundCF-Bold.ttf"),
+    "VisbyRoundCF-DemiBold": require("./app/assets/fonts/VisbyRoundCF-DemiBold.ttf"),
+    "VisbyRoundCF-Medium": require("./app/assets/fonts/VisbyRoundCF-Medium.ttf"),
+    "VisbyRoundCF-Heavy": require("./app/assets/fonts/VisbyRoundCF-Heavy.ttf"),
+    "VisbyRoundCF-ExtraBold": require("./app/assets/fonts/VisbyRoundCF-ExtraBold.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <ScrollProvider>
+        <BillProvider>
+          <NavigationContainer>
+            <HomeNavigation />
+          </NavigationContainer>
+        </BillProvider>
+      </ScrollProvider>
+    );
+  }
 }

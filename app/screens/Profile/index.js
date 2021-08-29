@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Button,
   Image,
   ScrollView,
   StyleSheet,
@@ -9,177 +8,160 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import AppLoading from "expo-app-loading";
-import { useFonts } from "@use-expo/font";
+
 import { Avatar, Badge } from "react-native-elements";
 import Icon from "react-native-vector-icons/Ionicons";
 import PaymentCard from "../../components/PaymentCard";
 
-const Profile = ({ navigation }) => {
-  let [fontsLoaded] = useFonts({
-    "VisbyRoundCF-Regular": require("../../assets/fonts/VisbyRoundCF-Regular.ttf"),
-    "VisbyRoundCF-Bold": require("../../assets/fonts/VisbyRoundCF-Bold.ttf"),
-    "VisbyRoundCF-DemiBold": require("../../assets/fonts/VisbyRoundCF-DemiBold.ttf"),
-    "VisbyRoundCF-Medium": require("../../assets/fonts/VisbyRoundCF-Medium.ttf"),
-    "VisbyRoundCF-Heavy": require("../../assets/fonts/VisbyRoundCF-Heavy.ttf"),
-    "VisbyRoundCF-ExtraBold": require("../../assets/fonts/VisbyRoundCF-ExtraBold.ttf"),
-  });
+const Profile = ({ navigation: { goBack } }) => {
+  return (
+    <View style={styles.background}>
+      <View style={styles.appContainer}>
+        <View style={styles.header}>
+          <TouchableHighlight style={styles.backBtn} onPress={() => goBack()}>
+            <Icon name="chevron-back" style={styles.backIcon}></Icon>
+          </TouchableHighlight>
+          <Text style={styles.appTitle}>Profile</Text>
+        </View>
+        <View
+          style={{
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
-    return (
-      <View style={styles.background}>
-        <View style={styles.appContainer}>
-          <View style={styles.header}>
-            <TouchableHighlight
-              style={styles.backBtn}
-              onPress={() => navigation.navigate("Home")}
-            >
-              <Icon name="chevron-back" style={styles.backIcon}></Icon>
-            </TouchableHighlight>
-            <Text style={styles.appTitle}>Profile</Text>
-          </View>
-          <View
-            style={{
-              shadowColor: "#000",
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
-
-              elevation: 5,
-              borderRadius: 50,
-              marginBottom: 30,
+            elevation: 5,
+            borderRadius: 50,
+            marginBottom: 30,
+          }}
+        >
+          <Avatar
+            rounded
+            icon={{
+              name: "camera",
+              type: "font-awesome",
+              color: "#363355",
             }}
-          >
-            <Avatar
-              rounded
-              icon={{
-                name: "camera",
-                type: "font-awesome",
-                color: "#363355",
-              }}
-              onPress={() => console.log("Works!")}
-              activeOpacity={0.7}
-              containerStyle={{
-                position: "absolute",
-                top: -5,
-                right: -5,
-                width: 38,
-                height: 38,
-                borderRadius: "50%",
-                backgroundColor: "#e7c294",
-                zIndex: 1,
-              }}
-            />
+            onPress={() => console.log("Works!")}
+            activeOpacity={0.7}
+            containerStyle={{
+              position: "absolute",
+              top: -5,
+              right: -5,
+              width: 38,
+              height: 38,
+              borderRadius: "50%",
+              backgroundColor: "#e7c294",
+              zIndex: 1,
+            }}
+          />
 
-            <Image
-              source={require("../../assets/images/avatars/ToyFaces_Tansparent_BG_28.png")}
-              resizeMode="contain"
+          <Image
+            source={require("../../assets/images/avatars/ToyFaces_Tansparent_BG_28.png")}
+            resizeMode="contain"
+            style={{
+              width: 120,
+              height: 120,
+              position: "absolute",
+              zIndex: 1,
+              bottom: 60,
+              left: 20,
+            }}
+          />
+
+          <View style={styles.avatarContainer}>
+            <View
               style={{
-                width: 120,
-                height: 120,
-                position: "absolute",
-                zIndex: 1,
-                bottom: 60,
-                left: 20,
+                backgroundColor: "#363355",
+                width: "100%",
+                height: 100,
+                justifyContent: "center",
+                alignItems: "center",
+                //   borderTopRightRadius: 30,
+                //   borderTopLeftRadius: 30,
               }}
-            />
-
-            <View style={styles.avatarContainer}>
-              <View
+            ></View>
+            <View
+              style={{
+                backgroundColor: "#47436a",
+                justifyContent: "center",
+                alignItems: "center",
+                height: 60,
+                width: "100%",
+              }}
+            >
+              <Text
                 style={{
-                  backgroundColor: "#363355",
-                  width: "100%",
-                  height: 100,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  //   borderTopRightRadius: 30,
-                  //   borderTopLeftRadius: 30,
-                }}
-              ></View>
-              <View
-                style={{
-                  backgroundColor: "#47436a",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: 60,
-                  width: "100%",
+                  color: "#fff",
+                  fontFamily: "VisbyRoundCF-Bold",
+                  fontSize: 25,
                 }}
               >
-                <Text
-                  style={{
-                    color: "#fff",
-                    fontFamily: "VisbyRoundCF-Bold",
-                    fontSize: 25,
-                  }}
-                >
-                  Gino
-                </Text>
-              </View>
+                Gino
+              </Text>
             </View>
-          </View>
-          <View style={styles.profileInfoContainer}>
-            <View style={styles.profileInfoRow}>
-              <View style={styles.infoButton}>
-                <Icon name="person" style={styles.icon}></Icon>
-              </View>
-              <View>
-                <Text style={styles.h4Light}>Name</Text>
-                <Text style={styles.h4Grey}>Gino Swanepoel</Text>
-              </View>
-            </View>
-            <View style={styles.profileInfoRow}>
-              <View style={styles.infoButton}>
-                <Icon name="mail" style={styles.icon}></Icon>
-              </View>
-              <View>
-                <Text style={styles.h4Light}>Email</Text>
-                <Text style={styles.h4Grey}>ginoleemusic@live.com</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.paymentInfoContainer}>
-            <View style={styles.subTitle}>
-              <Text style={styles.subTitleText}>Payment</Text>
-            </View>
-            <ScrollView horizontal={true} style={styles.paymentInfoContent}>
-              <View style={styles.paymentInfoColumn}>
-                <Text style={styles.h4White}>Visa Card</Text>
-                <Text style={styles.h4Light}>*2345</Text>
-                <PaymentCard
-                  name={"Gino Swanepoel"}
-                  number={"2033 5010 2512 4921"}
-                  date={"12/24"}
-                />
-              </View>
-              <View style={styles.paymentInfoColumn}>
-                <Text style={styles.h4White}>Master Card</Text>
-                <Text style={styles.h4Light}>*8302</Text>
-                <PaymentCard
-                  name={"Bernie Swanepoel"}
-                  number={"2033 0330 4412 9032"}
-                  date={"09/21"}
-                />
-              </View>
-              <View style={styles.paymentInfoColumn}>
-                <Text style={styles.h4White}>Visa Card</Text>
-                <Text style={styles.h4Light}>*3252</Text>
-                <PaymentCard
-                  name={"Clive Swanepoel"}
-                  number={"3403 8210 6522 9821"}
-                  date={"03/22"}
-                />
-              </View>
-            </ScrollView>
           </View>
         </View>
+        <View style={styles.profileInfoContainer}>
+          <View style={styles.profileInfoRow}>
+            <View style={styles.infoButton}>
+              <Icon name="person" style={styles.icon}></Icon>
+            </View>
+            <View>
+              <Text style={styles.h4Light}>Name</Text>
+              <Text style={styles.h4Grey}>Gino Swanepoel</Text>
+            </View>
+          </View>
+          <View style={styles.profileInfoRow}>
+            <View style={styles.infoButton}>
+              <Icon name="mail" style={styles.icon}></Icon>
+            </View>
+            <View>
+              <Text style={styles.h4Light}>Email</Text>
+              <Text style={styles.h4Grey}>ginoleemusic@live.com</Text>
+            </View>
+          </View>
+        </View>
+        <View style={styles.paymentInfoContainer}>
+          <View style={styles.subTitle}>
+            <Text style={styles.subTitleText}>Payment</Text>
+          </View>
+          <ScrollView horizontal={true} style={styles.paymentInfoContent}>
+            <View style={styles.paymentInfoColumn}>
+              <Text style={styles.h4White}>Visa Card</Text>
+              <Text style={styles.h4Light}>*2345</Text>
+              <PaymentCard
+                name={"Gino Swanepoel"}
+                number={"2033 5010 2512 4921"}
+                date={"12/24"}
+              />
+            </View>
+            <View style={styles.paymentInfoColumn}>
+              <Text style={styles.h4White}>Master Card</Text>
+              <Text style={styles.h4Light}>*8302</Text>
+              <PaymentCard
+                name={"Bernie Swanepoel"}
+                number={"2033 0330 4412 9032"}
+                date={"09/21"}
+              />
+            </View>
+            <View style={styles.paymentInfoColumn}>
+              <Text style={styles.h4White}>Visa Card</Text>
+              <Text style={styles.h4Light}>*3252</Text>
+              <PaymentCard
+                name={"Clive Swanepoel"}
+                number={"3403 8210 6522 9821"}
+                date={"03/22"}
+              />
+            </View>
+          </ScrollView>
+        </View>
       </View>
-    );
-  }
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
