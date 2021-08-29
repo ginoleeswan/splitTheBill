@@ -14,6 +14,8 @@ import SegmentedControl from "rn-segmented-control";
 // import SegmentedControl from "@react-native-segmented-control/segmented-control";
 
 import uuid from "react-native-uuid";
+
+import CurrencyInput from "react-native-currency-input";
 // import Animated from "react-native-reanimated";
 
 import { TouchableHighlight } from "react-native";
@@ -111,6 +113,26 @@ const NewSplit = ({ navigation }) => {
                 maxLength={8}
                 style={styles.textInput}
               />
+              {/* 
+              <CurrencyInput
+                value={totalAmount}
+                onChangeText={(value) => {
+                  setTotalAmount(value);
+                }}
+                placeholder="Enter Amount"
+                placeholderTextColor="#787a8f"
+                prefix="R"
+                delimiter=","
+                separator="."
+                precision={2}
+                keyboardType="numeric"
+                returnKeyType="next"
+                maxLength={8}
+                style={styles.textInput}
+                onChangeText={(formattedValue) => {
+                  console.log(formattedValue); // $2,310.46
+                }}
+              /> */}
             </KeyboardAvoidingView>
           </View>
           <View>

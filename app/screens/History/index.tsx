@@ -48,7 +48,7 @@ const History = ({ navigation }) => {
 
   return (
     <View style={styles.appContainer}>
-      <Header title="History" backButton={false} />
+      <Header title="History" backButton={false} navigation={navigation} />
 
       {/* <ScrollView
         ref={scrollRef}
@@ -73,13 +73,18 @@ const History = ({ navigation }) => {
           />
         ))} */}
 
-      <FlatList
-        data={bills}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        contentContainerStyle={{ alignItems: "center" }}
-        style={{ width: "100%" }}
-      />
+      {bills[0] ? (
+        <FlatList
+          data={bills}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          contentContainerStyle={{ alignItems: "center" }}
+          style={{ width: "100%" }}
+        />
+      ) : (
+        <Text style={styles.h4Light}>No Transactions</Text>
+      )}
+
       {/* </ScrollView> */}
     </View>
   );

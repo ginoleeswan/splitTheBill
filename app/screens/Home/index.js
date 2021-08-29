@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+
 import {
   Button,
   Image,
@@ -8,20 +9,38 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import AppLoading from "expo-app-loading";
-import { useFonts } from "@use-expo/font";
+
+import NumberFormat from "react-number-format";
 
 import { Avatar, Badge } from "react-native-elements";
 
 import Icon from "react-native-vector-icons/AntDesign";
 import { assets } from "../../../react-native.config";
 
+import { BillContext } from "../../context/BillContext";
+
 const Home = ({ navigation }) => {
+  const [bills, setBills] = useContext(BillContext);
+
+  // let firstBillAmount;
+
+  // useEffect(() => {
+  //   firstBillAmount = "No recent transactions";
+  // }, []);
+
+  // useEffect(() => {
+  //   if (bills != null) {
+  //     const firstBillItem = bills[0];
+  //     firstBillAmount = firstBillItem.totalAmount;
+  //   }
+  // }, [bills]);
+
   return (
     <View style={styles.background}>
       <View style={styles.appContainer}>
         <View style={styles.header}>
           <Text style={styles.appTitle}>Bill Splitter</Text>
+
           <TouchableOpacity
             onPress={() => navigation.navigate("Profile")}
             style={{
@@ -144,7 +163,25 @@ const Home = ({ navigation }) => {
           </TouchableOpacity>
           <View>
             <Text style={styles.h4Light}>Your Previous Split</Text>
-            <Text style={styles.h4Grey}>R482.72</Text>
+            {bills[0] ? (
+              <NumberFormat
+                value={Number(bills[0].totalAmount)}
+                renderText={(value) => (
+                  <Text style={styles.h4Grey}>{value}</Text>
+                )}
+                displayType={"text"}
+                thousandSeparator={true}
+                prefix={"R"}
+              />
+            ) : (
+              <Text style={styles.h4Grey}>No recent transactions</Text>
+            )}
+
+            {/* 
+            <NumberFormat value={Number(bills[0].totalAmount)} displayType={'text'} thousandSeparator={true} prefix={'R'} />
+            <Text style={styles.h4Grey}>
+              {bills[0] ? `R${bills[0].totalAmount}` : "No recent transactions"}
+            </Text> */}
           </View>
         </View>
         <View style={styles.friendsContainer}>

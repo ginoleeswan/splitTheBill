@@ -73,9 +73,9 @@ const AmountToPay = ({ route, navigation }) => {
   //   console.log(bills);
   // }, [bills]);
 
-  useEffect(() => {
-    console.log(customerList);
-  }, []);
+  // useEffect(() => {
+  //   console.log(customerList);
+  // }, []);
 
   return (
     <View style={styles.appContainer}>
@@ -85,7 +85,7 @@ const AmountToPay = ({ route, navigation }) => {
         <ScrollView>
           {customerList.map((customer, index) => {
             return (
-              <View style={styles.customerConainer}>
+              <View style={styles.customerConainer} key={index}>
                 <View
                   style={{
                     flexDirection: "row",
